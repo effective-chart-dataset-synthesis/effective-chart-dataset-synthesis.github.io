@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="description"
+    content="Effective Training Data Synthesis for Improving MLLM Chart Understanding - ICCV 2025 Poster">
+  <meta property="og:title" content="Effective Training Data Synthesis for Improving MLLM Chart Understanding" />
+  <meta property="og:description"
+    content="ICCV 2025 Poster - Introducing the Effective Chart Dataset (ECD) for improving MLLM chart understanding." />
+  <meta property="og:url" content="URL OF THE WEBSITE" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+
+  <meta name="twitter:title" content="Effective Training Data Synthesis for Improving MLLM Chart Understanding">
+  <meta name="twitter:description"
+    content="ICCV 2025 Poster - Introducing the Effective Chart Dataset (ECD) for improving MLLM chart understanding.">
+  <meta name="twitter:image" content="static/images/your_twitter_banner_image.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="keywords" content="Chart Understanding, MLLM, Data Synthesis, ECD Dataset, ICCV 2025">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>🔥ICCV-poster-ECD</title>
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro" rel="stylesheet">
+  <link rel="stylesheet" href="static/css/bulma.min.css">
+  <link rel="stylesheet" href="static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="static/css/fontawesome.all.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="static/css/index.css">
+
+  <style>
+    body {
+      font-family: 'Noto Sans', sans-serif;
+      color: #2c2c2c;
+      background-color: #fafafa;
+    }
+
+    h2,
+    h3 {
+      font-family: 'Google Sans', sans-serif;
+      color: #003366;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 1rem;
+      margin-bottom: 1.5rem;
+      font-size: 0.95rem;
+      background-color: #ffffff;
+      border: 1px solid #dcdcdc;
+    }
+
+    table thead tr {
+      background-color: #e8eef7;
+      color: #003366;
+      border-bottom: 2px solid #b3c7e6;
+    }
+
+    table thead th {
+      padding: 0.75em;
+      text-align: center;
+      font-weight: 600;
+    }
+
+    table tbody tr:nth-child(even) {
+      background-color: #f7f9fc;
+    }
+
+    table tbody tr:nth-child(odd) {
+      background-color: #ffffff;
+    }
+
+    table tbody td {
+      padding: 0.6em;
+      text-align: center;
+      color: #333;
+    }
+
+    .ecd-bench {
+      max-width: 900px;
+      margin: 2rem auto;
+      padding: 1rem 1.5rem;
+      background-color: #ffffff;
+      border-radius: 6px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    }
+
+    .ecd-bench section {
+      margin-top: 1.5rem;
+    }
+
+    /* Prevent first teaser image from stretching */
+    .no-scale-img img {
+      width: auto;
+      max-width: 100%;
+      height: auto;
+      display: block;
+      margin: 0 auto;
+    }
+  </style>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://documentcloud.adobe.com/view-sdk/main.js"></script>
+  <script defer src="static/js/fontawesome.all.min.js"></script>
+  <script src="static/js/bulma-carousel.min.js"></script>
+  <script src="static/js/bulma-slider.min.js"></script>
+  <script src="static/js/index.js"></script>
+</head>
+
+<body>
+
+  <section class="hero">
+    <div class="hero-body">
+      <div class="container is-max-desktop">
+        <div class="columns is-centered">
+          <div class="column has-text-centered">
+            <h1 class="title is-1 publication-title">
+              🔥 Effective Training Data Synthesis for Improving MLLM Chart Understanding
+            </h1>
+            <h3 class="subtitle is-4" style="color: #3273dc; font-weight: normal;">
+              ICCV 2025 (poster)
+            </h3>
+
+            <div class="is-size-5 publication-authors">
+              <span class="author-block">
+                <a href="https://scholar.google.com/citations?user=qyGKp0AAAAAJ&hl=zh-CN" target="_blank">Yuwei
+                  Yang</a><sup>1</sup>,
+              </span>
+              <span class="author-block">
+                <a href="https://scholar.google.com/citations?user=FRhYj9IAAAAJ&hl=zh-CN" target="_blank">Zeyu
+                  Zhang</a><sup>1</sup>,
+              </span>
+              <span class="author-block">
+                <a href="https://hou-yz.github.io/" target="_blank">Yunzhong Hou</a><sup>1</sup>,
+              </span>
+              <span class="author-block">
+                <a href="https://lizw14.github.io/" target="_blank">Zhuowan Li</a><sup>4</sup>,
+              </span>
+              <span class="author-block">
+                <a href="https://scholar.google.com/citations?user=NIv_aeQAAAAJ&hl=en" target="_blank">Gaowen
+                  Liu</a><sup>3</sup>,
+              </span>
+              <span class="author-block">
+                <a href="https://scholar.google.com/citations?user=9rHwD8wAAAAJ&hl=en" target="_blank">Ali
+                  Payani</a><sup>3</sup>,
+              </span>
+              <span class="author-block">
+                <a href="https://www.asc.ohio-state.edu/ting.74/" target="_blank">Yuan-Sen Ting</a><sup>2</sup>,
+              </span>
+              <span class="author-block">
+                <a href="https://zheng-lab-anu.github.io/" target="_blank">Liang Zheng</a><sup>1</sup>
+              </span>
+            </div>
+
+            <div class="is-size-6 publication-authors">
+              <span class="author-block">
+                <sup>1</sup>Australian National University &emsp;
+                <sup>2</sup>Ohio State University &emsp;
+                <sup>3</sup>Cisco &emsp;
+                <sup>4</sup>Johns Hopkins University
+              </span>
+            </div>
+
+            <div class="column has-text-centered" style="margin-top: 1rem;">
+              <div class="publication-links">
+                <span class="link-block">
+                  <a href="https://huggingface.co/datasets/ChartFoundation/ECD-10k-Images" target="_blank"
+                    class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon">🤗</span>
+                    <span>Dataset</span>
+                  </a>
+                </span>
+
+                <span class="link-block">
+                  <a href="https://huggingface.co/datasets/ChartFoundation/ECDBench" target="_blank"
+                    class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon">🥇</span>
+                    <span>Benchmark</span>
+                  </a>
+                </span>
+
+                <span class="link-block">
+                  <a href="https://huggingface.co/ChartFoundation/ECD_Finetuned_MLLMs" target="_blank"
+                    class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon">🧠</span>
+                    <span>Models</span>
+                  </a>
+                </span>
+
+                <span class="link-block">
+                  <a href="https://arxiv.org/pdf/2508.06492" target="_blank"
+                    class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon"><i class="fas fa-file-pdf"></i></span>
+                    <span>Paper</span>
+                  </a>
+                </span>
+              </div>
+            </div>
+
+            <div class="column is-fullwidth no-scale-img" style="margin-top: 2rem;">
+              <img src="static/images/overview.png" alt="teaser image">
+            </div>
+
+            <div class="column is-fullwidth">
+              <h2 class="title is-3" style="margin-top: 2rem;">✨ Abstract</h2>
+              <div class="content has-text-justified">
+                <p>
+                  Being able to effectively read scientific plots, or chart understanding, is a central part toward
+                  building effective agents for science. However, existing multimodal large language models (MLLMs),
+                  especially open-source ones, are still falling behind with a typical success rate of 30%-50% on
+                  challenging benchmarks. Previous studies on fine-tuning MLLMs with synthetic charts are often
+                  restricted by their inadequate similarity to the real charts, which could compromise model training
+                  and performance on complex real-world charts.
+                  In this study, we show that modularizing chart generation and diversifying visual details improves
+                  chart understanding capabilities. In particular, we design a five-step data synthesis pipeline, where
+                  we separate data and function creation for single plot generation, condition the generation of later
+                  subplots on earlier ones for multi-subplot figures, visually diversify the generated figures, filter
+                  out low quality data, and finally generate the question-answer (QA) pairs with GPT-4o.
+                  This approach allows us to streamline the generation of fine-tuning datasets and introduce the
+                  Effective Chart Dataset (ECD), which contains 10k+ chart images and 300k+ QA pairs, covering 25 topics
+                  and featuring 250+ chart type combinations with high visual complexity. We show that ECD consistently
+                  improves the performance of various MLLMs on a range of real-world and synthetic test sets.
+                </p>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Image carousel -->
+  <section class="hero is-small">
+    <div class="hero-body">
+      <div class="container">
+        <div id="results-carousel" class="carousel results-carousel">
+          <div class="item">
+            <img src="static/images/pipeline.png" alt="First image" />
+            <h2 class="subtitle">
+              <!-- Chart Generation Pipeline Section (Left Aligned) -->
+              <section style="max-width: 900px; margin: 2rem auto; font-family: 'Noto Sans', sans-serif; color: #333;">
+                <h2 style="font-family: 'Google Sans', sans-serif; color: #003366; margin-bottom: 1rem;">
+                  📊 Our Chart Generation Pipeline — Key Insights
+                </h2>
+                <ul style="list-style: none; padding: 0; margin: 0; line-height: 1.6;">
+                  <li style="margin-bottom: 0rem; background: #f7f9fc; padding: 0rem; border-radius: 1px;">
+                    <strong>1️⃣ Single plot generation</strong> – Create individual charts using predefined chart
+                    functions
+                    & a separate data generator for titles, labels, and markers.<br>
+                    <strong>2️⃣Combined subplot generation</strong> – Sequentially generate subplots where later plots
+                    are
+                    informed by earlier ones for semantic coherence.<br>
+                    <strong>3️⃣ Chart image diversification</strong> – Add annotations, shaded areas, zoom‑in insets,
+                    font
+                    tweaks, and axis style changes to increase realism.<br>
+                    <strong>4️⃣ Chart image filtering</strong> – Automatically filter out low‑quality charts using
+                    visual
+                    clarity & semantic coherence scores.<br>
+                    <strong>5️⃣ QA pair generation & filtering</strong> – Generate both descriptive & reasoning
+                    questions per
+                    chart, then apply additional quality filtering.
+                  </li>
+                </ul>
+              </section>
+            </h2>
+          </div>
+          <div class="item">
+            <img src="static/images/dataset_comparision.png" alt="Second image" />
+            <h2 class="subtitle">
+              <!-- ECD Dataset Comparison Section (Left Aligned) -->
+              <section style="max-width: 900px; margin: 2rem auto; font-family: 'Noto Sans', sans-serif; color: #333;">
+                <h2 style="font-family: 'Google Sans', sans-serif; color: #003366; margin-bottom: 1rem;">
+                  📊 Effective Chart Dataset (ECD) — Key Highlights
+                </h2>
+                <ul style="list-style: none; padding: 0; margin: 0; line-height: 1.8;">
+                  <li
+                    style="margin-bottom: 1rem; background: #f7f9fc; padding: 1rem; border-radius: 5px; box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);">
+                    <strong>1️⃣ Diverse Features:</strong> ECD includes the <strong>most themes (25)</strong>,
+                    <strong>chart types (29)</strong>
+                    and <strong>chart combinations (252)</strong>, surpassing all other datasets in variety and
+                    contextual coverage.<br>
+                    <strong>2️⃣ Data Realism:</strong> ECD achieves the <strong>lowest FID score</strong> compared to
+                    other datasets, demonstrating
+                    the strongest alignment with real-world scientific charts.<br>
+                    <strong>3️⃣ Higher Complexity:</strong> ECD outperforms other synthetic datasets in visual
+                    complexity, measured by
+                    <strong>average entropy</strong> of pixel values, making it closer to real-world scenarios.
+                  </li>
+                </ul>
+                </figure>
+              </section>
+            </h2>
+          </div>
+          <div class="item">
+            <img src="static/images/dataset_visual_comparsion.png" alt="Third image" />
+            <h2 class="subtitle">
+              <!-- MLLM and Training Set Comparison Section (Left Aligned) -->
+              <section style="max-width: 900px; margin: 2rem auto; font-family: 'Noto Sans', sans-serif; color: #333;">
+                <h2 style="font-family: 'Google Sans', sans-serif; color: #003366; margin-bottom: 1rem;">
+                  📊 Comparing with existing datasets
+                </h2>
+                <ul style="list-style: none; padding: 0; margin: 0; line-height: 1.8;">
+                  <li
+                    style="margin-bottom: 1rem; background: #f7f9fc; padding: 1rem; border-radius: 5px; box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);">
+                    Compared to chart images in existing chart QA training datasets, such as PlotQA (3 types), ChartQA
+                    (3 types), ChartBench (9 types), SimChart9k (3 types), ChartAssistant (9 types), and ReachQA (10
+                    types), our ECD dataset demonstrates significantly greater diversity with 29 chart types and over
+                    250 types of subplot combinations, while also exhibiting higher complexity in its design.
+                  </li>
+                </ul>
+              </section>
+            </h2>
+          </div>
+          <div class="item">
+            <img src="static/images/comparison_on_test_sets.png" alt="Fourth image" />
+            <h2 class="subtitle">
+              <!-- MLLM and Training Set Comparison Section (Left Aligned) -->
+              <section style="max-width: 900px; margin: 2rem auto; font-family: 'Noto Sans', sans-serif; color: #333;">
+                <h2 style="font-family: 'Google Sans', sans-serif; color: #003366; margin-bottom: 1rem;">
+                  📊 Comparing MLLMs and Training Sets — Key Insights
+                </h2>
+                <ul style="list-style: none; padding: 0; margin: 0; line-height: 1.8;">
+                  <li
+                    style="margin-bottom: 1rem; background: #f7f9fc; padding: 1rem; border-radius: 5px; box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);">
+                    <strong>1️⃣ MLLM Performance Comparison:</strong> Evaluations across six test sets. Fine-tuning on
+                    ECD shows overall
+                    improvements (highlighted in <span style="color: green;">green</span>) across four open-source
+                    MLLMs.<br>
+                    <strong>2️⃣ Training Set Comparison:</strong> Fine-tuning LLaVA-Next-Llama3-8B on different training
+                    sets, including <strong>ChartQA</strong>, <strong>ChartBench</strong>, <strong>ReachQA</strong>, and
+                    <strong>ECD</strong>, reveals ECD achieves the best overall performance. Each column in the table
+                    highlights the best result in <strong>bold</strong> and the second-best result
+                    as <u>underlined</u>. Performance growth is marked in <span style="color: green;">green</span>,
+                    while declines are marked in <span style="color: red;">red</span>.
+                  </li>
+                </ul>
+              </section>
+            </h2>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- End image carousel -->
+
+  <div class="ecd-bench">
+    <h2 class="title is-3" style="margin-top: 2rem;">🏆 Our ECDBench</h2>
+    <p style="text-align: center; font-size: 1rem; color: #555;">
+      Evaluating Multimodal LLM performance on scientific charts with descriptive + reasoning Q&A.
+    </p>
+
+    <section>
+      <h1><strong>Overview</strong></h1>
+      <ul style="line-height: 1.6; color: #444;">
+        <li><strong>Total chart images:</strong> 1,224</li>
+        <li><strong>Single‑plot charts:</strong> 364</li>
+        <li><strong>Multi‑subplot charts:</strong> 860 (457 with 2 chart types; 403 with 3)</li>
+        <li><strong>Avg. resolution:</strong> 1378 × 968 px</li>
+        <li><strong>Constructed via:</strong> GPT‑4o plus human refinement</li>
+        <li><strong>Total Q&A pairs:</strong> 2,448 (1 descriptive + 1 reasoning per image)</li>
+      </ul>
+    </section>
+
+    <section>
+      <h3>Model Performance Comparison (%)</h3>
+      <table>
+        <thead>
+          <tr>
+            <th>Model</th>
+            <th>Reasoning</th>
+            <th>Descriptive</th>
+            <th>Average</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>o4‑mini</strong></td>
+            <td><strong>57.03</strong></td>
+            <td><strong>77.45</strong></td>
+            <td><strong>67.24</strong></td>
+          </tr>
+          <tr>
+            <td>o3</td>
+            <td>56.13</td>
+            <td>74.51</td>
+            <td>65.32</td>
+          </tr>
+          <tr>
+            <td>Gemini‑2.5‑Pro</td>
+            <td>44.36</td>
+            <td>76.88</td>
+            <td>60.62</td>
+          </tr>
+          <tr>
+            <td>o1</td>
+            <td>40.52</td>
+            <td>74.18</td>
+            <td>57.35</td>
+          </tr>
+          <tr>
+            <td>Claude-4-Sonnet</td>
+            <td>44.20</td>
+            <td>69.36</td>
+            <td>56.78</td>
+          </tr>
+          <tr>
+            <td>Claude-3.7-Sonnet</td>
+            <td>43.38</td>
+            <td>69.61</td>
+            <td>56.50</td>
+          </tr>
+          <tr>
+            <td>Claude-3.5-Sonnet</td>
+            <td>41.99</td>
+            <td>68.14</td>
+            <td>55.07</td>
+          </tr>
+          <tr>
+            <td>Qwen2.5‑VL‑72B</td>
+            <td>38.81</td>
+            <td>68.46</td>
+            <td>53.64</td>
+          </tr>
+          <tr>
+            <td>GPT‑4o</td>
+            <td>35.62</td>
+            <td>70.18</td>
+            <td>52.90</td>
+          </tr>
+          <tr>
+            <td>GPT‑4o‑mini</td>
+            <td>24.26</td>
+            <td>57.27</td>
+            <td>40.77</td>
+          </tr>
+          <tr>
+            <td>Qwen2.5‑VL‑32B</td>
+            <td>24.92</td>
+            <td>53.92</td>
+            <td>39.42</td>
+          </tr>
+          <tr>
+            <td>Qwen2.5‑VL‑7B</td>
+            <td>19.04</td>
+            <td>57.35</td>
+            <td>38.19</td>
+          </tr>
+          <tr>
+            <td>Random (GPT‑4o)</td>
+            <td>4.58</td>
+            <td>1.63</td>
+            <td>3.10</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section>
+      <h3>Effects of ECD Fine‑Tuning</h3>
+      <table>
+        <thead>
+          <tr>
+            <th>Model (Before / After)</th>
+            <th>Reasoning</th>
+            <th>Descriptive</th>
+            <th>Average</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>LLaVA‑Next‑Llama3‑8B</td>
+            <td>4.74 / <strong>16.50</strong></td>
+            <td>17.16 / <strong>46.65</strong></td>
+            <td>10.95 / <strong>31.58<strong></td>
+          </tr>
+          <tr>
+            <td>MiniCPM‑V2.6</td>
+            <td>15.15 / <strong>18.14</strong></td>
+            <td>39.95 / <strong>52.21</strong></td>
+            <td>27.53 / <strong>35.17</strong></td>
+          </tr>
+          <tr>
+            <td>Phi‑3‑Vision</td>
+            <td>21.65 / <strong>29.49</strong></td>
+            <td>41.18 / <strong>59.31</strong></td>
+            <td>31.41 / <strong>44.40</strong></td>
+          </tr>
+          <tr>
+            <td>Qwen2.5‑VL‑7B</td>
+            <td>19.04 / <strong>35.38</strong></td>
+            <td>57.35 / <strong>66.34</strong></td>
+            <td>38.19 / <strong>50.86</strong></td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+  </div>
+
+  <section class="section" id="Citation">
+    <div class="container is-max-desktop content">
+      <h2 class="title">BibTeX</h2>
+      <pre><code>@inproceedings{yang2025effective,
+  title={Effective Training Data Synthesis for Improving MLLM Chart Understanding},
+  author={Yang, Yuwei and Zhang, Zeyu and Hou, Yunzhong and Li, Zhuowan and Liu, Gaowen and Payani, Ali and Ting, Yuan-Sen and Zheng, Liang},
+  booktitle={Proceedings of the IEEE/CVF International Conference on Computer Vision (ICCV)},
+  year={2025}
+}
+      </code></pre>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="columns is-centered">
+        <div class="column is-8">
+          <div class="content">
+            <p>
+              This page was adopted from the <a href="https://nerfies.github.io" target="_blank">Nerfies</a>, licensed
+              under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/" target="_blank">Creative
+                Commons Attribution-ShareAlike 4.0 International License</a>.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+</body>
+
+</html>
